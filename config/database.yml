@@ -83,6 +83,7 @@ test:
 #
 production:
   <<: *default
+  url: <%= ENV.fetch('DATABASE_URL', '').sub(/^postgres/, "postgis") %>
   database: point_maker_api_production
   username: point_maker_api
   password: <%= ENV['POINT_MAKER_API_DATABASE_PASSWORD'] %>

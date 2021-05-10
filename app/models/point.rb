@@ -29,13 +29,13 @@ class Point < ApplicationRecord
   end
 
   def delete_from_firestore
-    doc_ref = firestore.doc "#{collection_path}/#{self.id}"
+    doc_ref = firestore_init.doc "points/#{self.id}"
     doc_ref.delete
   end
 
   private
   def firestore_init
-    @_firestore ||= Google::Cloud::Firestore.new(project_id: "leena-mapbox", 
-      credentials: Rails.root.join('leena-mapbox-313306-dee8ce3a2cb9.json'))
+    @_firestore ||= Google::Cloud::Firestore.new(project_id: "mapbox-points-db", 
+      credentials: Rails.root.join(ENV['GOOGLE_APPLICATION_CREDENTIALS']))
   end
 end
