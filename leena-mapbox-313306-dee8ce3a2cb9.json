@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "leena-mapbox-313306",
+  "private_key_id": "dee8ce3a2cb90b8e54898dbd4d54589dc0e765d3",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDggsYPVArd8gx0\nmnYWiKsBW63XDTS+DICsyiQtVeVA7E9nsxY+qb5L4bvRqbHv9TJhCMgixT05GWvy\nY6uGChiNwMid4WoE/k8q84/1l0/VgVQlCAx4JKMWkpvtmfgulv5qP2LsZ/rT5ytU\ne5pd+7GoX/mAMTMzo7eHC2hLOWjDv1upJ1I38sqB6mz7eQkPsmvfZgOEiuLDlmwO\ng7N5CHOMhb6AkaPZF2FbOjmt6rH+wMduCDToosSwaGuofEpdXbCC8bi1SvpdmJQ/\nEuHsicSMp6dkzkLS5J+MlzoH2R2fSfMbE0srDsilHZibWCy5dOI14CEIVWZtZ2vp\nrAgp+6BZAgMBAAECggEATg55kQO9wXuxw+qeCuiaV98Jmj6/qyHKrQiculxmWAOw\n+dNkdQXsIRLLC7KtqEl+Kgl1F82uowcJJl1r2a7x6Xrw5R9ljnXijYLf9tmUSp1r\n5XIeb7kBMMxpRRsmlAAwVT1ThfEC3qC9SmKtAWcMVgeERgMVE6ukl+Gp8Zl0qLVd\nCHns7X3NF+sN+YPZJVLVMa1mkrAHnoQlOXannIkXBVEGn1AvblZy9IpTJWkPoZrF\nawho2yOsW+L/GJt7i28ms9wR4+d5UI5erRzIC4ayu85oCSNo4wnjWK+4vRn50etO\nvh9Pl45lGQeEmb/d+5vqmg+IH8zBosJO7JglGk+hdwKBgQD1KENNfTCOY6Sp+Ci4\nvZ6mvfmbpKyQdWwIhe5zzzCw2ii+mWatVxAmcsD9wWoIOnQ0dGTF3U8rf5zuBXaW\ngywBj5fiWLZwqoJhTv7lZx3rxBKzoTgujI3bwYo+OIrKPwU8FVAR3TkAQ7HA3dB3\nisCBntGyhQwMBGMpHL49aZF7ewKBgQDqcL8EMPB70FfoaJh26WHSJX1SvAQGADfi\nnSOhuOa/Z+a/6iW2nO078R2tHEFrbpTFd+m2Fu6k9uVU+yOhpvcEZl++iDPVfIJ0\nCluTT6h1N4ztKa5nNUUA0+AOCnlLr80TLh5vPXztY+RG9GockERH/DYM9CgnYTQD\noEBS3HMROwKBgQCgClO9X092dMgHCXCUAX1zfqtXFu5sM6t9+OjMg2JW4WQd4Qit\nehuZ7enc/gmZK4e2wpEStkG7tMgefkSHR0RQFIxjf+RBsp4AplAyM9nNkqdeyo1h\nnfHxluwHaGP6WZ+yNHub3d4bNRXyQRuZHmRDegmMz9wocCjHqvLqJmOJxwKBgQDI\nKO7Nk0MfUuhbI0JY9DVyiFORmbkNro4ISwWrBATukrUuUalVWnIp5Vji/ebU5Jrc\nZd8Cel3SNoHipnDriXQJK6a/M+addSqkDFvXUAGR4pXNvvKKZ668YClBk6uv9S7w\nG0Ycz7Cjtc+mzPLz5DCIDUvQj3zg8lrIZb/FfzY3FQKBgCWtDV8pjc/eVu9lUsE9\n4x7xkXC+cu/VnehXHj2Dt7brws71lKIdVw4Yp2vYHwz/cp3PZOicMQstP6x8E2c7\nPcJFEr9+Bmc/9aryCDv91WVCiH52gNAsYi2XV+nWyvsy3I0OcIF6BNY/XAEGJ+Rz\nYNpgaqfNLFw3/fQ5a1LA88fT\n-----END PRIVATE KEY-----\n",
+  "client_email": "leena-mapbox-account@leena-mapbox-313306.iam.gserviceaccount.com",
+  "client_id": "100314440521041744150",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/leena-mapbox-account%40leena-mapbox-313306.iam.gserviceaccount.com"
+}
