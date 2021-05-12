@@ -1,4 +1,3 @@
-require "google/cloud/firestore"
 class Point < ApplicationRecord
 
   before_save :decode_lonlat
@@ -18,7 +17,7 @@ class Point < ApplicationRecord
   end
 
   def add_to_firestore
-    doc_ref = firestore_init.doc "points/#{self.id}"
+    doc_ref = FirestoreService.new.call "points/#{self.id}"
     doc_ref.set(
       {
         name: self.name,
@@ -29,13 +28,7 @@ class Point < ApplicationRecord
   end
 
   def delete_from_firestore
-    doc_ref = firestore_init.doc "points/#{self.id}"
+    doc_ref = FirestoreService.new.call "points/#{self.id}"
     doc_ref.delete
-  end
-
-  private
-  def firestore_init
-    @_firestore ||= Google::Cloud::Firestore.new(project_id: "mapbox-points-db", 
-      credentials: Rails.root.join(ENV['GOOGLE_APPLICATION_CREDENTIALS']))
   end
 end
