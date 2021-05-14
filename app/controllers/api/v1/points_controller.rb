@@ -1,5 +1,5 @@
 class Api::V1::PointsController < ApplicationController
-
+  before_action :doorkeeper_authorize!
   before_action :find_point, only: [:show, :update, :destroy]
 
   def index
