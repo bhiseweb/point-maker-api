@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Api::V1::Users::PasswordsController < Devise::PasswordsController
+  skip_before_action :doorkeeper_authorize!
+
   # GET /resource/password/new
   # def new
   #   super
