@@ -2,7 +2,13 @@ class Api::V1::PointsController < ApplicationController
   before_action :find_point, only: [:show, :update, :destroy]
 
   def index
-    points = current_user.points
+    points = if params[:name].present?
+               current_user.points.where("name ilike ?", "%#{params[:name]}%")
+             else
+               current_user.points
+             end
+
+    points = points.order(updated_at: :desc)
     render json: points, status: :ok
   end
 

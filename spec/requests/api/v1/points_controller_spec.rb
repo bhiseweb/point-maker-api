@@ -27,6 +27,18 @@ describe 'API::V1::PointsController', :type => :request do
     end
   end
 
+  describe 'search points by name' do
+    before { get '/api/v1/points', params: { name: awesome_points.first.name }, headers: { 'Authorization': 'Bearer ' + token.token } }
+
+    it 'returns points with matching name' do
+      expect(JSON.parse(response.body)['data'].map{ |p| p['id']}).to include(awesome_points.first.id.to_s)
+    end
+
+    it 'returns status code 200' do
+      expect(response).to have_http_status(:success)
+    end
+  end
+
   describe 'create point' do
     before { post '/api/v1/points', params: { data: { type: 'Point', attributes: {
         name: 'point1', latitude: '44.23232', longitude: '38.73733'}}}, headers: { 'Authorization': 'Bearer ' + token.token } }
