@@ -8,7 +8,7 @@ class Point < ApplicationRecord
   attr_accessor :latitude, :longitude
 
   def decode_lonlat
-    lonlat = {type: "Point", coordinates: [longitude, latitude]}.as_json
+    lonlat = { type: 'Point', coordinates: [longitude, latitude] }.as_json
     decoded = RGeo::GeoJSON.decode(lonlat)
     self.lonlat = decoded
   end
@@ -18,18 +18,18 @@ class Point < ApplicationRecord
   end
 
   def add_to_firestore
-    doc_ref = FirestoreService.new.call "points/#{self.id}"
+    doc_ref = FirestoreService.new.call "points/#{id}"
     doc_ref.set(
       {
-        name: self.name,
-        latitude: self.latitude,
-        longitude: self.longitude
+        name: name,
+        latitude: latitude,
+        longitude: longitude
       }
     )
   end
 
   def delete_from_firestore
-    doc_ref = FirestoreService.new.call "points/#{self.id}"
+    doc_ref = FirestoreService.new.call "points/#{id}"
     doc_ref.delete
   end
 end

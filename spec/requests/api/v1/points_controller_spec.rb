@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'API::V1::PointsController', :type => :request do
+describe 'API::V1::PointsController', type: :request do
   let!(:application) { FactoryBot.create(:application) }
   let!(:awesome_creator) { FactoryBot.create(:creator) }
   let!(:awesome_points) { FactoryBot.create_list(:point, 20, creator: awesome_creator) }
@@ -16,7 +16,7 @@ describe 'API::V1::PointsController', :type => :request do
   end
 
   describe 'get all points' do
-    before { get '/api/v1/points', headers: { 'Authorization': 'Bearer ' + token.token } }
+    before { get '/api/v1/points', headers: { 'Authorization': "Bearer #{token.token}" } }
 
     it 'returns all points of creator' do
       expect(JSON.parse(response.body)['data'].size).to eq(20)
@@ -28,10 +28,13 @@ describe 'API::V1::PointsController', :type => :request do
   end
 
   describe 'search points by name' do
-    before { get '/api/v1/points', params: { name: awesome_points.first.name }, headers: { 'Authorization': 'Bearer ' + token.token } }
+    before do
+      get '/api/v1/points', params: { name: awesome_points.first.name },
+                            headers: { 'Authorization': "Bearer #{token.token}" }
+    end
 
     it 'returns points with matching name' do
-      expect(JSON.parse(response.body)['data'].map{ |p| p['id']}).to include(awesome_points.first.id.to_s)
+      expect(JSON.parse(response.body)['data'].map { |p| p['id'] }).to include(awesome_points.first.id.to_s)
     end
 
     it 'returns status code 200' do
@@ -40,8 +43,11 @@ describe 'API::V1::PointsController', :type => :request do
   end
 
   describe 'create point' do
-    before { post '/api/v1/points', params: { data: { type: 'Point', attributes: {
-        name: 'point1', latitude: '44.23232', longitude: '38.73733'}}}, headers: { 'Authorization': 'Bearer ' + token.token } }
+    before do
+      post '/api/v1/points', params: { data: { type: 'Point', attributes: {
+        name: 'point1', latitude: '44.23232', longitude: '38.73733'
+      } } }, headers: { 'Authorization': "Bearer #{token.token}" }
+    end
 
     it 'return new point' do
       expect(Point.last.name).to eq('point1')
@@ -64,7 +70,7 @@ describe 'API::V1::PointsController', :type => :request do
 
   describe 'get point with id' do
     context 'access own points' do
-      before { get "/api/v1/points/#{awesome_points.last.id}", headers: { 'Authorization': 'Bearer ' + token.token } }
+      before { get "/api/v1/points/#{awesome_points.last.id}", headers: { 'Authorization': "Bearer #{token.token}" } }
 
       it 'return point with given id' do
         expect(JSON.parse(response.body)['data']['id']).to eq awesome_points.last.id.to_s
@@ -77,7 +83,7 @@ describe 'API::V1::PointsController', :type => :request do
     end
 
     context 'access others points' do
-      before { get "/api/v1/points/#{funny_points.last.id}", headers: { 'Authorization': 'Bearer ' + token.token } }
+      before { get "/api/v1/points/#{funny_points.last.id}", headers: { 'Authorization': "Bearer #{token.token}" } }
 
       it 'return success response' do
         expect(response).to have_http_status(:not_found)
@@ -87,8 +93,11 @@ describe 'API::V1::PointsController', :type => :request do
 
   describe 'update point' do
     context 'update own point' do
-      before { put "/api/v1/points/#{awesome_points.last.id}", params: { data: { type: 'Point', attributes: {
-          name: 'update point', latitude: '44.23232', longitude: '38.73733'}}}, headers: { 'Authorization': 'Bearer ' + token.token } }
+      before do
+        put "/api/v1/points/#{awesome_points.last.id}", params: { data: { type: 'Point', attributes: {
+          name: 'update point', latitude: '44.23232', longitude: '38.73733'
+        } } }, headers: { 'Authorization': "Bearer #{token.token}" }
+      end
 
       it 'return updated point' do
         expect(awesome_points.last.reload.name).to eq 'update point'
@@ -100,8 +109,11 @@ describe 'API::V1::PointsController', :type => :request do
     end
 
     context 'update others point' do
-      before { put "/api/v1/points/#{funny_points.last.id}", params: { data: { type: 'Point', attributes: {
-          name: 'update point', latitude: '44.23232', longitude: '38.73733'}}}, headers: { 'Authorization': 'Bearer ' + token.token } }
+      before do
+        put "/api/v1/points/#{funny_points.last.id}", params: { data: { type: 'Point', attributes: {
+          name: 'update point', latitude: '44.23232', longitude: '38.73733'
+        } } }, headers: { 'Authorization': "Bearer #{token.token}" }
+      end
 
       it 'return success response' do
         expect(response).to have_http_status(:not_found)
@@ -111,7 +123,9 @@ describe 'API::V1::PointsController', :type => :request do
 
   describe 'delete point' do
     context 'delete own points' do
-      before { delete "/api/v1/points/#{awesome_points.last.id}", headers: { 'Authorization': 'Bearer ' + token.token } }
+      before do
+        delete "/api/v1/points/#{awesome_points.last.id}", headers: { 'Authorization': "Bearer #{token.token}" }
+      end
 
       it 'delete given point' do
         expect(Point.all.size).to eq(39)
@@ -123,7 +137,7 @@ describe 'API::V1::PointsController', :type => :request do
     end
 
     context 'delete others points' do
-      before { delete "/api/v1/points/#{funny_points.last.id}", headers: { 'Authorization': 'Bearer ' + token.token } }
+      before { delete "/api/v1/points/#{funny_points.last.id}", headers: { 'Authorization': "Bearer #{token.token}" } }
 
       it 'return success response' do
         expect(response).to have_http_status(:not_found)

@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Api::V1::Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
@@ -16,7 +14,7 @@ class Api::V1::Users::RegistrationsController < Devise::RegistrationsController
 
     client_app = Doorkeeper::Application.find_by(uid: params[:client_id])
 
-    return render(json: { error: 'Invalid client ID'}, status: 403) unless client_app
+    return render(json: { error: 'Invalid client ID' }, status: 403) unless client_app
 
     if user.save
       # create access token for the user, so the user won't need to login again after registration
@@ -30,17 +28,19 @@ class Api::V1::Users::RegistrationsController < Devise::RegistrationsController
 
       # return json containing access token and refresh token
       # so that user won't need to call login API right after registration
-      render(json: {
-        user: {
-          id: user.id,
-          email: user.email,
-          access_token: access_token.token,
-          token_type: 'bearer',
-          expires_in: access_token.expires_in,
-          refresh_token: access_token.refresh_token,
-          created_at: access_token.created_at.to_time.to_i
+      render(
+        json: {
+          user: {
+            id: user.id,
+            email: user.email,
+            access_token: access_token.token,
+            token_type: 'bearer',
+            expires_in: access_token.expires_in,
+            refresh_token: access_token.refresh_token,
+            created_at: access_token.created_at.to_time.to_i
+          }
         }
-      })
+      )
     else
       render(json: { error: user.errors.full_messages }, status: 422)
     end
