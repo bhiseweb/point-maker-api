@@ -2,10 +2,16 @@ class PointSerializer < ActiveModel::Serializer
   attributes :name, :latitude, :longitude
 
   def longitude
-    object.encode_lonlat['coordinates'].first.round(5)
+    coordinates.first.round(5)
   end
 
   def latitude
-    object.encode_lonlat['coordinates'].last.round(5)
+    coordinates.last.round(5)
+  end
+
+  private
+
+  def coordinates
+    object.encode_lonlat(object.lonlat)['coordinates']
   end
 end
