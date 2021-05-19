@@ -1,10 +1,9 @@
 require 'rails_helper'
 
 describe 'API::V1::PointsController', type: :request do
-  let!(:application) { FactoryBot.create(:application) }
   let!(:awesome_creator) { FactoryBot.create(:creator) }
   let!(:awesome_points) { FactoryBot.create_list(:point, 20, creator: awesome_creator) }
-  let(:token) { FactoryBot.create(:access_token, application: application, resource_owner_id: awesome_creator.id) }
+  let(:token) { FactoryBot.create(:access_token, resource_owner_id: awesome_creator.id) }
   let!(:funny_creator) { FactoryBot.create(:creator) }
   let!(:funny_points) { FactoryBot.create_list(:point, 20, creator: funny_creator) }
 
