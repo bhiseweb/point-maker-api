@@ -2,6 +2,7 @@ class Api::V1::Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
   skip_before_action :doorkeeper_authorize!
+  respond_to :jsonapi
 
   # GET /resource/sign_up
   # def new
@@ -37,7 +38,11 @@ class Api::V1::Users::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
-  # protected
+  protected
+
+  def sign_up_params
+    ActiveModelSerializers::Deserialization.jsonapi_parse!(params, only: %i[email password])
+  end
 
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_sign_up_params
@@ -58,18 +63,4 @@ class Api::V1::Users::RegistrationsController < Devise::RegistrationsController
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end
-  private
-
-  def user_params
-    params.permit(:email, :password)
-  end
-
-  def generate_refresh_token
-    loop do
-      # generate a random token string and return it,
-      # unless there is already another token with the same string
-      token = SecureRandom.hex(32)
-      break token unless Doorkeeper::AccessToken.exists?(refresh_token: token)
-    end
-  end
 end
