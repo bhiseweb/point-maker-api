@@ -7,7 +7,7 @@ module Api
 
       def index
         points = if params[:name].present?
-                   current_user.points.where('name ilike ?', "%#{params[:name]}%")
+                   current_user.points.with_name(params[:name])
                  else
                    current_user.points
                  end

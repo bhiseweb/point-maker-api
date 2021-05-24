@@ -9,6 +9,8 @@ class Point < ApplicationRecord
   after_save :add_to_firestore
   after_destroy :delete_from_firestore
 
+  scope :with_name, ->(name) { where('name ilike ?', "%#{name}%") }
+
   attr_accessor :latitude, :longitude
 
   def set_lonlat
