@@ -1,36 +1,42 @@
 # frozen_string_literal: true
 
-class Api::V1::Users::PasswordsController < Devise::PasswordsController
-  skip_before_action :doorkeeper_authorize!
+module Api
+  module V1
+    module Users
+      class PasswordsController < Devise::PasswordsController
+        skip_before_action :doorkeeper_authorize!
 
-  # GET /resource/password/new
-  # def new
-  #   super
-  # end
+        # GET /resource/password/new
+        # def new
+        #   super
+        # end
 
-  # POST /resource/password
-  # def create
-  #   super
-  # end
+        # POST /resource/password
+        # def create
+        #   super
+        # end
 
-  # GET /resource/password/edit?reset_password_token=abcdef
-  # def edit
-  #   super
-  # end
+        # GET /resource/password/edit?reset_password_token=abcdef
+        # def edit
+        #   super
+        # end
 
-  # PUT /resource/password
-  # def update
-  #   super
-  # end
+        # PUT /resource/password
+        # def update
+        #   super
+        # end
 
-  # protected
+        # protected
 
-  # def after_resetting_password_path_for(resource)
-  #   super(resource)
-  # end
+        # def after_resetting_password_path_for(resource)
+        #   super(resource)
+        # end
 
-  # The path used after sending reset password instructions
-  # def after_sending_reset_password_instructions_path_for(resource_name)
-  #   super(resource_name)
-  # end
+        # The path used after sending reset password instructions
+        # def after_sending_reset_password_instructions_path_for(resource_name)
+        #   super(resource_name)
+        # end
+      end
+    end
+  end
 end

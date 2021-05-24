@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class PointSerializer < ActiveModel::Serializer
   attributes :name, :latitude, :longitude
 

@@ -1,0 +1,16 @@
+require: rubocop-rails
+
+Style/Documentation:
+  Enabled: false
+
+Metrics/BlockLength:
+  Enabled: false
+
+Rails/ReversibleMigration:
+  Enabled: false
+
+Style/GlobalStdStream:
+  Enabled: false
+
+Style/BlockComments:
+  Enabled: false
