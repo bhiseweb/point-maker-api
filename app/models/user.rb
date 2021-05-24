@@ -10,7 +10,7 @@ class User < ApplicationRecord
            class_name: 'Doorkeeper::AccessToken',
            foreign_key: :resource_owner_id,
            dependent: :delete_all # or :destroy if you need callbacks
-  has_many :points, foreign_key: :creator_id, dependent: :destroy
+  has_many :points, dependent: :destroy
 
   def self.authenticate(email, password)
     user = User.find_for_authentication(email: email)

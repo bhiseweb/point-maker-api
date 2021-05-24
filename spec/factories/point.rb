@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :point do
-    creator
+    created_by
     name { Faker::Address.full_address }
     lonlat { "POINT(#{Faker::Address.longitude} #{Faker::Address.latitude})" }
   end

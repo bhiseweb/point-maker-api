@@ -3,11 +3,11 @@
 require 'rails_helper'
 
 describe 'API::V1::PointsController', type: :request do
-  let!(:awesome_creator) { FactoryBot.create(:creator) }
-  let!(:awesome_points) { FactoryBot.create_list(:point, 20, creator: awesome_creator) }
-  let(:token) { FactoryBot.create(:access_token, resource_owner_id: awesome_creator.id) }
-  let!(:funny_creator) { FactoryBot.create(:creator) }
-  let!(:funny_points) { FactoryBot.create_list(:point, 20, creator: funny_creator) }
+  let!(:awesome_user) { FactoryBot.create(:user) }
+  let!(:awesome_points) { FactoryBot.create_list(:point, 20, created_by: awesome_user) }
+  let(:token) { FactoryBot.create(:access_token, resource_owner_id: awesome_user.id) }
+  let!(:funny_user) { FactoryBot.create(:user) }
+  let!(:funny_points) { FactoryBot.create_list(:point, 20, created_by: funny_user) }
 
   describe 'unauthorized access' do
     before { get '/api/v1/points' }
@@ -19,7 +19,7 @@ describe 'API::V1::PointsController', type: :request do
   describe 'get all points' do
     before { get '/api/v1/points', headers: { 'Authorization': "Bearer #{token.token}" } }
 
-    it 'returns all points of creator' do
+    it 'returns all points of user' do
       expect(JSON.parse(response.body)['data'].size).to eq(20)
     end
 
@@ -54,8 +54,8 @@ describe 'API::V1::PointsController', type: :request do
       expect(Point.last.name).to eq('point1')
     end
 
-    it 'is created by awesome_creator' do
-      expect(Point.last.creator).to eq(awesome_creator)
+    it 'is created by awesome_user' do
+      expect(Point.last.created_by).to eq(awesome_user)
     end
 
     it 'return success response' do

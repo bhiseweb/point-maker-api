@@ -4,9 +4,9 @@ require 'rails_helper'
 
 RSpec.describe Point, type: :model do
   describe '#with_name' do
-    let!(:creator) { FactoryBot.create(:creator) }
-    let!(:point1) { FactoryBot.create(:point, name: 'New Delhi', creator: creator) }
-    let!(:point2) { FactoryBot.create(:point, name: 'Goa', creator: creator) }
+    let!(:user) { FactoryBot.create(:user) }
+    let!(:point1) { FactoryBot.create(:point, name: 'New Delhi', created_by: user) }
+    let!(:point2) { FactoryBot.create(:point, name: 'Goa', created_by: user) }
 
     it 'gives points matching with given name' do
       expect(Point.with_name('New')).to eq [point1]
