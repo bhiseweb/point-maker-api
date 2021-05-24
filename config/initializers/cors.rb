@@ -9,7 +9,7 @@
 
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
-    origins '*'
+    origins 'http://localhost:4200', 'https://frozen-everglades-56689.herokuapp.com'
     resource '*', headers: :any, methods: %i[get post patch put delete]
   end
 end

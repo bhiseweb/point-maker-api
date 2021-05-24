@@ -5,8 +5,8 @@ require 'google/cloud/firestore'
 class FirestoreService
   def initialize
     @firestore = Google::Cloud::Firestore.new(
-      project_id: Rails.root.join(ENV['FIRESTORE_DB']),
-      credentials: Rails.root.join(ENV['GOOGLE_APPLICATION_CREDENTIALS'])
+      project_id: Rails.root.join(Rails.application.credentials.firestore_db),
+      credentials: Rails.root.join(Rails.application.credentials.google_application_credentials)
     )
   end
 
