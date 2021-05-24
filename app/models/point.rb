@@ -19,18 +19,20 @@ class Point < ApplicationRecord
   end
 
   def add_to_firestore
-    doc_ref = FirestoreService.new.call "points/#{id}"
-    doc_ref.set(
-      {
-        name: name,
-        latitude: latitude,
-        longitude: longitude
-      }
-    )
+    attributes = {
+                   name: name,
+                   latitude: latitude,
+                   longitude: longitude
+                 }
+
+    firestore_doc.set(attributes)
   end
 
   def delete_from_firestore
-    doc_ref = FirestoreService.new.call "points/#{id}"
-    doc_ref.delete
+    firestore_doc.delete
+  end
+
+  def firestore_doc
+    FirestoreService.new.doc("points/#{id}")
   end
 end
