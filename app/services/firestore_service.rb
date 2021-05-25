@@ -12,15 +12,9 @@ class FirestoreService
 
   attr_reader :firestore
 
-  def doc(reference)
-    firestore.doc(reference)
-  end
+  delegate :doc, to: :firestore
 
-  def set(attributes)
-    doc.set(attributes)
-  end
+  delegate :set, to: :doc
 
-  def delete
-    doc.delete
-  end
+  delegate :delete, to: :doc
 end

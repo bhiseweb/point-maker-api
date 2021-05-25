@@ -3,11 +3,11 @@
 class Point < ApplicationRecord
   include RgeoGeojson
 
-  belongs_to :created_by, class_name: :User, foreign_key: :user_id
+  belongs_to :created_by, class_name: :User, foreign_key: :user_id, inverse_of: :points
 
   before_save :set_lonlat
-  after_save :add_to_firestore
   after_destroy :delete_from_firestore
+  after_save :add_to_firestore
 
   scope :with_name, ->(name) { where('name ilike ?', "%#{name}%") }
 
@@ -20,10 +20,10 @@ class Point < ApplicationRecord
 
   def add_to_firestore
     attributes = {
-                   name: name,
-                   latitude: latitude,
-                   longitude: longitude
-                 }
+      name: name,
+      latitude: latitude,
+      longitude: longitude
+    }
 
     firestore_doc.set(attributes)
   end

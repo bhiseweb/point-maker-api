@@ -33,6 +33,7 @@ gem 'rgeo-geojson'
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 gem 'rack-cors'
 gem 'rubocop-rails', require: false
+gem 'rubocop-rspec', require: false
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
