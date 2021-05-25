@@ -1,0 +1,29 @@
+require:
+  - rubocop-rails
+  - rubocop-rspec
+
+AllCops:
+  NewCops: enable
+
+Style/Documentation:
+  Enabled: false
+
+Metrics/BlockLength:
+  Enabled: false
+
+Metrics/MethodLength:
+  Exclude:
+    - db/**/*
+
+Rails/ReversibleMigration:
+  Enabled: false
+
+Style/GlobalStdStream:
+  Enabled: false
+
+Style/BlockComments:
+  Enabled: false
+
+Metrics/AbcSize:
+  Exclude:
+    - db/**/*

@@ -15,10 +15,12 @@
 # gem 'pg'
 #
 default: &default
-  adapter: postgresql
+  adapter: postgis
   encoding: unicode
   # For details on connection pooling, see Rails configuration guide
   # https://guides.rubyonrails.org/configuring.html#database-pooling
+  username: postgres 
+  password: postgres
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
 development:
@@ -81,6 +83,7 @@ test:
 #
 production:
   <<: *default
+  url: <%= ENV.fetch('DATABASE_URL', '').sub(/^postgres/, "postgis") %>
   database: point_maker_api_production
   username: point_maker_api
   password: <%= ENV['POINT_MAKER_API_DATABASE_PASSWORD'] %>
