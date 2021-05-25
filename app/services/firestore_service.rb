@@ -12,8 +12,10 @@ class FirestoreService
 
   attr_reader :firestore
 
+  # Call as: doc(reference)
   delegate :doc, to: :firestore
 
+  # Call as: set(options)
   delegate :set, to: :doc
 
   delegate :delete, to: :doc
